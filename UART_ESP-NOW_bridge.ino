@@ -13,8 +13,8 @@
 #include "WiFi.h"
 
 // ЗАМЕНИТЕ МАС-АДРЕСОМ ПЛАТЫ-ПОЛУЧАТЕЛЯ
-//uint8_t broadcastAddress[] = {0xC0, 0x49, 0xEF, 0xF0, 0x2D, 0x3C};//board#1
-uint8_t broadcastAddress[] = {0x0C, 0xB8, 0x15, 0xEC, 0xA5, 0x8C};//board#2
+uint8_t broadcastAddress[] = {0xC0, 0x49, 0xEF, 0xF0, 0x2D, 0x3C};//board#1
+//uint8_t broadcastAddress[] = {0x0C, 0xB8, 0x15, 0xEC, 0xA5, 0x8C};//board#2
  
 char c_tx[128];//received message from uart. for send via wifi
 char c_rx[128];//received from wifi
@@ -89,7 +89,7 @@ void loop() {
     c_tx[c_tx_counter] = temp[0]; // Добавляем его в буфер.  
     c_tx_counter++;
   }
-  if(temp[0]==control_char or c_tx_counter>=c_tx_counter_max){
+  if(temp[0]=='\n' or temp[0]=='\r' or c_tx_counter>=c_tx_counter_max){
     c_tx[c_tx_counter]='\0';
     send_message(c_tx_counter,c_tx);
     c_tx_counter=0;
