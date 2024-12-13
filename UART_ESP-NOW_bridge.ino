@@ -56,7 +56,7 @@ void setup() {
   esp_now_register_recv_cb(OnDataRecv);
   
   // Указываем получателя
-  esp_now_peer_info_t peerInfo;
+  esp_now_peer_info_t peerInfo; //попробовать добавить {}. Т.к. в другом проекте была ошибка из-за этого. 13.12.2024
   memcpy(peerInfo.peer_addr, broadcastAddress, 6);
   peerInfo.channel = 0;  
   peerInfo.encrypt = false;
